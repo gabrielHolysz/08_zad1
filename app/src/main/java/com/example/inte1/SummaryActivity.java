@@ -13,6 +13,8 @@ public class SummaryActivity extends AppCompatActivity {
     public static final String EXTRA_LEVEL = "extra_level";
     public static final String EXTRA_NEWSLETTER = "extra_newsletter";
 
+    public static final String EXTRA_NUMBER = "extra_number";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,5 +32,21 @@ public class SummaryActivity extends AppCompatActivity {
         String newsletterText = newsletter ? getString(R.string.yes_short) : getString(R.string.no_short);
         String summaryText = getString(R.string.summary_format, name, email, course, level, newsletterText);
         tvSummary.setText(summaryText);
+
+
+// W onCreate:
+        findViewById(R.id.btnConfirm).setOnClickListener(v -> {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra(EXTRA_NUMBER, "2026/001");
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        });
+
+        findViewById(R.id.btnEdit).setOnClickListener(v -> {
+            setResult(RESULT_CANCELED);
+            finish();
+        });
     }
+
+
 }
